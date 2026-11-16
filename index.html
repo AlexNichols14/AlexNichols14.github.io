@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Alexander Nichols, MS Biomedical Engineering student at NYU Tandon interested in medical robotics, biomedical devices, and wearable sensors.">
+  <title>Alexander Nichols | Biomedical Engineering</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #22221f;
+      --muted: #4f4f48;
+      --paper: #f3f3eb;
+      --outer: #faf4ee;
+      --lavender: #b6a4e9;
+      --violet: #45256c;
+      --line: #c7c5ba;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--outer);
+      color: var(--ink);
+      font: 1rem/1.65 "Instrument Sans", system-ui, sans-serif;
+    }
+    .page {
+      width: min(100% - 3rem, 75rem);
+      margin: clamp(1rem, 4vw, 3.5rem) auto;
+      border: 1px solid var(--ink);
+      border-radius: .8rem;
+      background: var(--paper);
+    }
+    .wrap { width: calc(100% - clamp(2.5rem, 10vw, 9rem)); margin-inline: auto; }
+    a { color: inherit; text-underline-offset: .25em; }
+    :focus-visible { outline: 2px solid var(--violet); outline-offset: 4px; }
+    h1, h2, h3, p { margin: 0; }
+    h1, h2, h3 { line-height: 1.12; letter-spacing: -.045em; }
+    h2 { font-size: clamp(1.75rem, 3.4vw, 2.65rem); font-weight: 620; }
+    h3 { font-size: clamp(1.2rem, 2.3vw, 1.65rem); font-weight: 680; }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0 1.5rem;
+      padding-block: .75rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .nav a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; }
+    .nav a:hover { text-decoration: underline; }
+    .brand { font-weight: 760; letter-spacing: -.025em; }
+    .nav-links { display: flex; flex-wrap: wrap; gap: 0 clamp(.8rem, 3vw, 1.8rem); font-size: .9rem; }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, .95fr);
+      align-items: center;
+      gap: 1.6rem clamp(2rem, 6vw, 5rem);
+      padding-block: clamp(2rem, 6vw, 5rem);
+    }
+    .eyebrow { color: var(--violet); font-size: .8rem; font-weight: 720; }
+    h1 { margin-block: .65rem 1rem; font-size: clamp(2.35rem, 5.3vw, 4.2rem); font-weight: 640; }
+    .interests { max-width: 27ch; color: var(--muted); font-size: clamp(1.05rem, 2.2vw, 1.35rem); }
+    .banner { margin: 0; min-width: 0; }
+    .photo-stage {
+      width: min(100%, clamp(14rem, 27vw, 20rem));
+      margin-inline: auto;
+      padding: .75rem;
+      border: 1px solid var(--ink);
+      background: var(--paper);
+    }
+    .photo-open {
+      display: block;
+      width: 100%;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: zoom-in;
+    }
+    .photo-dialog {
+      max-width: calc(100% - 2rem);
+      padding: .65rem;
+      border: 1px solid var(--ink);
+      background: var(--paper);
+    }
+    .photo-dialog::backdrop { background: rgb(0 0 0 / 78%); }
+    .photo-dialog img {
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 78vh;
+      margin-inline: auto;
+      filter: grayscale(1) contrast(.92);
+    }
+    .photo-close {
+      display: block;
+      min-height: 44px;
+      margin: 0 0 .4rem auto;
+      padding: 0 .75rem;
+      border: 1px solid var(--ink);
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      cursor: pointer;
+    }
+    .banner img {
+      display: block;
+      width: 100%;
+      height: auto;
+      filter: grayscale(1) contrast(.92);
+    }
+    .gallery-controls { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem; width: min(100%, clamp(14rem, 27vw, 20rem)); margin: .65rem auto 0; }
+    .gallery-controls[hidden] { display: none; }
+    .gallery-controls button, .contact-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: .4rem .75rem;
+      border: 1px solid var(--ink);
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      font-size: .85rem;
+      cursor: pointer;
+    }
+    .gallery-controls button:hover, .contact-links a:hover { background: var(--lavender); }
+    .gallery-count { margin-inline-start: auto; color: var(--muted); font-size: .85rem; }
+
+    .section { padding-block: clamp(2.25rem, 6vw, 4.5rem); }
+    .about, .credentials { border-top: 1px solid var(--line); }
+    .about { display: grid; grid-template-columns: 1fr 1.45fr; gap: 1rem 3rem; }
+    .about p { max-width: 57ch; }
+    .about p + p { margin-top: 1rem; }
+    .availability { color: var(--violet); font-weight: 720; }
+    .work { background: #eae4f4; border-block: 1px solid var(--line); }
+    .projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.4rem 2rem; margin-top: 1.75rem; }
+    article { padding: 1.25rem 0 0; border-top: 2px solid var(--violet); }
+    .role { margin: .55rem 0 .65rem; color: var(--violet); font-weight: 700; font-size: .88rem; }
+    article p:last-child { color: var(--muted); }
+    .credentials { display: grid; grid-template-columns: 1fr 1fr; gap: 2.25rem 3.5rem; border-top: 0; }
+    .tags, .awards { list-style: none; padding: 0; margin: 1.15rem 0 0; }
+    .tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tags li { padding: .28rem .58rem; background: #eae4f4; border: 1px solid #d5c7e5; font-size: .9rem; }
+    .awards li { padding-block: .45rem; border-bottom: 1px solid var(--line); }
+    footer { background: var(--lavender); border-top: 1px solid var(--ink); border-radius: 0 0 .75rem .75rem; }
+    .contact { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem 2rem; }
+    .contact-links { display: flex; flex-wrap: wrap; gap: .65rem; }
+    .contact-links a { text-decoration: none; overflow-wrap: anywhere; }
+    .contact-links a:hover { background: var(--paper); }
+
+    @media (max-width: 43rem) {
+      .page { width: calc(100% - 1.25rem); margin-block: .65rem; }
+      .wrap { width: calc(100% - 2rem); }
+      .hero, .about, .projects, .credentials { grid-template-columns: 1fr; }
+      .photo-stage, .gallery-controls { width: min(100%, 20rem); }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+  <header class="masthead" id="top">
+    <nav class="nav wrap" aria-label="Main navigation">
+      <a class="brand" href="#top">Alexander Nichols</a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#projects">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+    <div class="hero wrap">
+      <div>
+        <p class="eyebrow">NYU Tandon · MS Biomedical Engineering</p>
+        <h1>Alexander Nichols</h1>
+        <p class="interests">Medical robotics, biomedical devices, and wearable sensors</p>
+      </div>
+      <figure class="banner" aria-label="Photo gallery">
+        <div class="photo-stage">
+          <button class="photo-open" type="button" aria-label="Enlarge current gallery photo" aria-haspopup="dialog">
+            <img id="gallery-photo" src="photos/graduation.jpg" width="900" height="1200"
+                 alt="Alexander Nichols holding his diploma at University of Wyoming commencement">
+          </button>
+        </div>
+        <div class="gallery-controls" hidden>
+          <button type="button" id="gallery-toggle">Pause rotation</button>
+          <button type="button" id="gallery-prev" aria-label="Previous photo">←</button>
+          <button type="button" id="gallery-next" aria-label="Next photo">→</button>
+          <span class="gallery-count">1 / 5</span>
+        </div>
+      </figure>
+    </div>
+  </header>
+
+  <main>
+    <section class="section wrap about" id="about">
+      <h2>About</h2>
+      <div>
+        <p>I’m a biomedical engineering graduate student at NYU Tandon. I earned my BS in Mechanical Engineering from the University of Wyoming, where I helped prototype a search-and-rescue drone and supported materials science research.</p>
+        <p>I want to apply my experience in design, prototyping, and testing to wearable and surgical robotic systems. I’m especially interested in evaluating how these devices perform when people use them.</p>
+        <p class="availability">I’m seeking a summer 2027 internship in medical robotic devices.</p>
+      </div>
+    </section>
+
+    <section class="section work" id="projects">
+      <div class="wrap">
+        <h2>Projects &amp; experience</h2>
+        <div class="projects">
+          <article>
+            <h3>NYU Tandon Course Assistant</h3>
+            <p class="role">Department of Mechanical &amp; Aerospace Engineering</p>
+            <p>Supported students in thermo-fluids labs with equipment operation and data collection. Collaborated with faculty to design and improve lab equipment and experimental setups for engineering coursework.</p>
+          </article>
+          <article>
+            <h3>Rapidly Deployable Unmanned Aerial System</h3>
+            <p class="role">System Design Team Member · 2025–2026</p>
+            <p>Helped design and fabricate a modular search-and-rescue drone that transitions quickly from a self-contained state to flight readiness. Integrated mechanical, electrical, and software components through prototyping and testing.</p>
+          </article>
+          <article>
+            <h3>Center for Carbon Capture and Conversion</h3>
+            <p class="role">Research Assistant · 2023–2026</p>
+            <p>Supported materials science research, coordinated lab work across projects, and maintained and improved lab equipment and processes.</p>
+          </article>
+          <article>
+            <h3>University of Wyoming Innovation Network</h3>
+            <p class="role">Makerspace Technician · 2024</p>
+            <p>Developed and led hands-on design workshops, maintained makerspace tools and machines, and helped students work through design challenges on their projects.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="section wrap credentials">
+      <section id="skills">
+        <h2>Skills</h2>
+        <ul class="tags">
+          <li>Engineering design</li>
+          <li>CAD &amp; modeling</li>
+          <li>Programming</li>
+          <li>Hardware &amp; software integration</li>
+          <li>Prototyping &amp; iterative development</li>
+          <li>Research &amp; data analysis</li>
+          <li>Project management</li>
+          <li>Technical documentation</li>
+          <li>Interdisciplinary collaboration</li>
+        </ul>
+      </section>
+      <section id="awards">
+        <h2>Awards</h2>
+        <ul class="awards">
+          <li>NYU Tandon Grad Distinguished Dean Fellowship</li>
+          <li>UW President’s List Recognition, 2022–2026</li>
+          <li>UW Engineering Dean’s Impact Scholarship</li>
+          <li>Tau Beta Pi Outstanding Member Award</li>
+          <li>SGM Engineering Scholarship</li>
+          <li>Wyoming Engineering Society Scholarship</li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <footer class="section" id="contact">
+    <div class="wrap contact">
+      <h2>Contact</h2>
+      <div class="contact-links">
+        <a href="mailto:ajn9036@nyu.edu">ajn9036@nyu.edu</a>
+        <a href="https://www.linkedin.com/in/alexander-nichols-uw/">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+  </div>
+  <dialog class="photo-dialog" aria-label="Enlarged gallery photo">
+    <button class="photo-close" type="button" autofocus>Close</button>
+    <img id="enlarged-photo" alt="">
+  </dialog>
+  <script>
+    const photos = [
+      ['graduation.jpg', 'Alexander Nichols holding his diploma at University of Wyoming commencement'],
+      ['engineering-hall.jpg', 'Alexander in graduation regalia outside Engineering Hall'],
+      ['award.jpg', 'Alexander holding an award alongside another person onstage'],
+      ['podium.jpg', 'Alexander speaking at a podium'],
+      ['engineering-ring.jpg', 'Alexander posing behind an engineering ring display']
+    ];
+    const photo = document.querySelector('#gallery-photo');
+    const photoDialog = document.querySelector('.photo-dialog');
+    const enlargedPhoto = document.querySelector('#enlarged-photo');
+    const count = document.querySelector('.gallery-count');
+    const toggle = document.querySelector('#gallery-toggle');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let index = 0;
+    let rotating = !reducedMotion.matches;
+    let timer;
+
+    function showPhoto(step) {
+      index = (index + step + photos.length) % photos.length;
+      const [file, description] = photos[index];
+      photo.src = 'photos/' + file;
+      photo.alt = description;
+      count.textContent = (index + 1) + ' / ' + photos.length;
+    }
+
+    function updateRotation() {
+      clearInterval(timer);
+      toggle.textContent = rotating ? 'Pause rotation' : 'Play rotation';
+      count.setAttribute('aria-live', rotating ? 'off' : 'polite');
+      if (rotating && !document.hidden && !photoDialog.open) {
+        timer = setInterval(() => showPhoto(1), 5500);
+      }
+    }
+
+    function browse(step) {
+      rotating = false;
+      updateRotation();
+      showPhoto(step);
+    }
+
+    document.querySelector('.photo-open').addEventListener('click', () => {
+      enlargedPhoto.src = photo.src;
+      enlargedPhoto.alt = photo.alt;
+      photoDialog.showModal();
+      updateRotation();
+    });
+    document.querySelector('.photo-close').addEventListener('click', () => photoDialog.close());
+    photoDialog.addEventListener('click', event => {
+      if (event.target !== photoDialog) return;
+      const bounds = photoDialog.getBoundingClientRect();
+      if (event.clientX < bounds.left || event.clientX >= bounds.right ||
+          event.clientY < bounds.top || event.clientY >= bounds.bottom) {
+        photoDialog.close();
+      }
+    });
+    photoDialog.addEventListener('close', updateRotation);
+
+    toggle.addEventListener('click', () => {
+      rotating = !rotating;
+      updateRotation();
+    });
+    document.querySelector('#gallery-prev').addEventListener('click', () => browse(-1));
+    document.querySelector('#gallery-next').addEventListener('click', () => browse(1));
+    document.addEventListener('visibilitychange', updateRotation);
+    reducedMotion.addEventListener('change', event => {
+      if (event.matches) {
+        rotating = false;
+        updateRotation();
+      }
+    });
+    document.querySelector('.gallery-controls').hidden = false;
+    updateRotation();
+  </script>
+</body>
+</html>
